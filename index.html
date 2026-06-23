@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="google-site-verification" content="ZxvYybyg9963-ltKszRxcviAPkYag5UuGqjlJLMqtww" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henry Global Tech | HGT Nexus</title>
+    <style>
+        /* === CORE STYLES & TYPOGRAPHY === */
+        :root {
+            --primary: #0056b3;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --loader-color: #3498db;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Large Headlines */
+        h1 { font-size: 3.5rem; color: #111; margin-bottom: 10px; border-bottom: 4px solid var(--primary); display: inline-block; }
+        h2 { font-size: 2.5rem; color: #222; margin-top: 40px; margin-bottom: 15px; }
+        h3 { font-size: 1.8rem; color: #444; }
+        p { font-size: 1.15rem; margin-bottom: 20px; text-align: justify; }
+
+        /* === LOADER & PROGRESS BAR STYLES === */
+        .screen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
+        .hidden { display: none !important; }
+        
+        .progress-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 12px solid #ddd;
+            border-top: 12px solid var(--loader-color);
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+        .color-change { animation: spin 2s linear infinite, changeColor 15s linear forwards; }
+        
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes changeColor {
+            0% { border-top-color: #3498db; }
+            33% { border-top-color: #e74c3c; }
+            66% { border-top-color: #f1c40f; }
+            100% { border-top-color: #2ecc71; }
+        }
+
+        .status-text { font-size: 1.5rem; font-weight: bold; margin-top: 20px; color: #555; }
+
+        /* === BUTTONS & CONTROLS === */
+        button {
+            background-color: var(--primary); color: white; border: none; padding: 15px 30px;
+            font-size: 1.2rem; border-radius: 8px; cursor: pointer; margin: 10px;
+            transition: background 0.3s, transform 0.1s;
+            font-weight: bold;
+        }
+        button:hover { background-color: #004494; }
+        button:active { transform: scale(0.95); }
+        
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 50px; padding-top: 20px; border-top: 2px solid #ddd; }
+        
+        .utility-bar { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+        
+        /* Voice Button Tooltip */
+        .voice-btn-container { position: relative; display: inline-block; }
+        .tooltip {
+            visibility: hidden; width: 120px; background-color: #333; color: #fff; text-align: center;
+            border-radius: 6px; padding: 5px; position: absolute; z-index: 1;
+            bottom: 125%; left: 50%; margin-left: -60px; opacity: 0; transition: opacity 0.3s;
+            font-size: 0.9rem;
+        }
+        .voice-btn-container:hover .tooltip, .show-tooltip { visibility: visible; opacity: 1; }
+
+        /* Image Gallery */
+        .image-gallery { display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0; }
+        .image-gallery img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .image-info { font-style: italic; color: #666; margin-bottom: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. INITIAL GET STARTED SCREEN -->
+    <div id="screen-welcome" class="screen container">
+        <h1>Henry Global Tech</h1>
+        <h2>The Nexus Portal</h2>
+        <p>You are about to see the complete history, architecture, and professional applications of Henry Global Tech.</p>
+        <button id="btn-get-started" onclick="startAppSequence()">Get Started</button>
+        
+        <div id="initial-loading-ui" class="hidden">
+            <div class="progress-circle color-change"></div>
+            <div id="initial-status" class="status-text">Listing details...</div>
+        </div>
+    </div>
+
+    <!-- 2. TRANSITION LOADER (Next Button 5s delay) -->
+    <div id="screen-transition" class="screen hidden">
+        <div class="progress-circle"></div>
+        <div class="status-text">Fetching, fetching, get ready...</div>
+    </div>
+
+    <!-- 3. MAIN APP CONTENT -->
+    <div id="screen-main" class="container hidden">
+        
+        <!-- SECTION 0: HGT ADMIN, FOOTBALL, ACADEMICS & CHIBOY -->
+        <div id="section-0" class="content-section">
+            <div class="utility-bar">
+                <button onclick="window.open('https://henrygolbalindustry.blogspot.com/?m=1', '_blank')">Open HGT Blog</button>
+                <button onclick="copyLink('https://henrygolbalindustry.blogspot.com/?m=1')">Copy Link</button>
+                <div class="voice-btn-container">
+                    <button class="voice-btn" onmousedown="showTooltip(this)" onmouseup="speakText('text-admin')" ontouchstart="showTooltip(this)" ontouchend="speakText('text-admin')">🎙️ Listen to Page</button>
+                    <span class="tooltip">Click to listen</span>
+                </div>
+            </div>
+
+            <div id="text-admin">
+                <h1>Henry Global Tech: The Making of an Empire</h1>
+                
+                <h2>The Academic Foundation in Nigeria</h2>
+                <p>Every great technological empire has a foundation rooted in discipline, and the story of Henry Global Tech (HGT) is no different. Growing up in Nigeria, my early life was defined by a rigorous dedication to academics. Education was not just a requirement; it was the lens through which I learned to analyze the world. I spent countless hours mastering mathematics, logical reasoning, and the sciences. This academic intensity forged a mindset that refused to accept mediocrity. When I encountered a complex problem in school, I didn't back down—I broke it apart, studied its components, and found a solution. This exact academic persistence is what eventually translated into my ability to write complex algorithms, structure massive databases, and engineer the single-file HTML, CSS, and JavaScript architectures that power HGT today.</p>
+
+                <h2>The Football Journey: Vision, Strategy, and Brotherhood</h2>
+                <p>But life was not only about books; it was about the pitch. My football journey played an equally massive role in shaping the CEO and Lead Developer I am today. On the football field, I learned that raw talent is nothing without strategy, vision, and stamina. Playing football required me to anticipate the next move, to see the entire field, and to work synchronously with a team. I learned how to push my body and mind beyond their limits. The discipline of waking up early for drills, the pain of defeat, and the euphoria of a hard-earned victory built an unbreakable mental resilience in me. When I am debugging a highly complex Firebase logic error at 3:00 AM today, I rely on the exact same stamina and mental fortitude I developed on the football pitch. Football taught me how to strategize, and coding became my new arena.</p>
+
+                <h2>The Brotherhood: The Role of Chiboy</h2>
+                <p>No great leader builds an empire entirely alone, and in the story of Henry Global Tech, the name Chiboy holds immense weight. Chiboy is not just a friend; he is a brother forged in the fires of shared ambition. During the days when I was balancing my intense football training, my academic workload, and my growing obsession with web development, Chiboy was the sounding board. When the code wouldn't run, when the servers crashed, or when Google AdSense rejected an application because of domain issues, Chiboy was there. We spent late nights discussing the future, debating logic flows, and pushing each other to be greater. In a world where many give up at the first sign of failure, having a friend like Chiboy—someone who understands the vision and demands excellence—was a catalyst for the creation of HGT. Our bond proves that while I sit at the helm as the sole owner and lead developer, the spirit of teamwork I learned in football lives on in the culture of Henry Global Tech.</p>
+                
+                <h2>The Genesis of Henry Global Tech</h2>
+                <p>With an ironclad academic background and the strategic discipline of a footballer, I transitioned my focus entirely to the digital world. I saw a massive gap in the web development industry. Tools were too complex, APIs were locked behind expensive paywalls, and developers were struggling to find streamlined solutions. I founded Henry Global Tech to disrupt this space. My vision was absolute: to create a "Nexus"—a central hub of unified, high-performance web applications that developers and users could rely on permanently.</p>
+
+                <p>I dove deep into modern web architecture. I mastered GitHub for repository management. I integrated Firebase to handle robust backend services like Firestore and Authentication. I implemented OneSignal Web SDKs to ensure seamless push notifications. I refused to rely on bloated frameworks; instead, I engineered lightweight, single-file applications that load instantly and perform flawlessly. From launching a WordPress-based site using the Softaculous installer to mastering the intricacies of Google Search Console for SEO dominance, I built the HGT infrastructure brick by brick.</p>
+
+                <h2>Monetization and Professional Authority</h2>
+                <p>A major milestone in establishing HGT's authority was mastering Google AdSense and AdMob. I spent weeks analyzing what constitutes "high-value content." I tackled technical hurdles head-on, troubleshooting domain errors (like the 'hgt at most' domain issues) until the architecture was perfect. Today, HGT stands as a testament to what a single, highly disciplined Nigerian developer can achieve. From the football pitch to the global tech stage, Henry Global Tech is not just a company—it is a legacy of excellence, precision, and unstoppable ambition.</p>
+            </div>
+            
+            <!-- Using your exact image filenames -->
+            <div class="image-gallery" id="gallery-admin">
+                <img src="hgtlog.png" alt="HGT Logo">
+                <img src="hgtadmin1.png" alt="HGT Admin View 1">
+                <img src="hgtadmin2.png" alt="HGT Admin View 2">
+                <img src="hgt_image (2).png" alt="HGT Extra Image">
+                <img src="Screenshot_20260623-051843.png" alt="HGT Screenshot">
+            </div>
+        </div>
+
+        <!-- SECTION 1: HGT ATMOS -->
+        <div id="section-1" class="content-section hidden">
+            <div class="utility-bar">
+                <button onclick="window.open('https://henrykamsi.github.io/HGT-Atmos/', '_blank')">Open Website</button>
+                <button onclick="copyLink('https://henrykamsi.github.io/HGT-Atmos/')">Copy Link</button>
+                <div class="voice-btn-container">
+                    <button class="voice-btn" onmousedown="showTooltip(this)" onmouseup="speakText('text-atmos')" ontouchstart="showTooltip(this)" ontouchend="speakText('text-atmos')">🎙️ Listen to Page</button>
+                    <span class="tooltip">Click to listen</span>
+                </div>
+            </div>
+
+            <div id="text-atmos">
+                <h1>HGT ATMOS: Precision Weather Intelligence</h1>
+                <h2>Redefining Global Climate Tracking</h2>
+                <p>HGT ATMOS is the crown jewel of Henry Global Tech’s consumer-facing applications. When I looked at the landscape of weather forecasting tools, I saw lag, intrusive advertisements, and inaccurate data. As the Lead Developer, I engineered ATMOS to solve these exact problems. ATMOS is built on a highly responsive, single-file architecture that communicates directly with global meteorological servers to fetch millisecond-accurate climate data. Whether you need to know the humidity levels in Lagos, Nigeria, or the wind speed in London, ATMOS delivers it instantly.</p>
+
+                <h2>The Engineering Behind the Speed</h2>
+                <p>The core of ATMOS relies on a streamlined JavaScript fetch logic that bypasses heavy visual loaders and directly parses JSON weather data into a clean, beautiful UI. This application is designed to be lightweight, meaning it consumes minimal bandwidth—a crucial feature for users in areas with unstable internet connections. By prioritizing speed and accuracy, ATMOS meets the strict criteria of "high-value content" that search engines prioritize.</p>
+
+                <h2>A Tool for the Future</h2>
+                <p>With its integration into the HGT Nexus, ATMOS represents the future of utility applications. It requires no installation, runs perfectly in any mobile or desktop browser, and provides an unparalleled user experience. This is the HGT standard: zero friction, maximum precision, and permanent reliability.</p>
+            </div>
+            <div class="image-gallery">
+                <img src="hgtatmos1.png" alt="HGT Atmos Interface 1">
+                <img src="hgtatmos2.png" alt="HGT Atmos Interface 2">
+            </div>
+        </div>
+
+        <!-- SECTION 2: HGT COUNTRY API -->
+        <div id="section-2" class="content-section hidden">
+            <div class="utility-bar">
+                <button onclick="window.open('https://henrykamsi.github.io/HGT-Country-API-free/', '_blank')">Open Website</button>
+                <button onclick="copyLink('https://henrykamsi.github.io/HGT-Country-API-free/')">Copy Link</button>
+                <div class="voice-btn-container">
+                    <button class="voice-btn" onmousedown="showTooltip(this)" onmouseup="speakText('text-country')" ontouchstart="showTooltip(this)" ontouchend="speakText('text-country')">🎙️ Listen to Page</button>
+                    <span class="tooltip">Click to listen</span>
+                </div>
+            </div>
+
+            <div id="text-country">
+                <h1>HGT Country API: Universal Developer Access</h1>
+                <h2>Breaking Down API Paywalls</h2>
+                <p>The HGT Country API was born out of frustration with the modern developer ecosystem. Why should a developer have to register for an API key, provide a credit card, and worry about monthly rate limits just to access a list of countries, capitals, and region codes? I decided to change the rules. The HGT Country API is a completely free, keyless, JSON endpoint designed to provide universal access to global demographic and geographic data.</p>
+
+                <h2>Built for Every Language and Framework</h2>
+                <p>The architecture of the `countries.json` endpoint is built for massive scalability. Because it is hosted on a highly available infrastructure, developers can integrate it seamlessly whether they are coding a backend in Node.js, building an iOS app in Swift, or scripting data analysis in Python. The response times are incredibly fast, ensuring that applications relying on HGT data never experience bottlenecking.</p>
+
+                <h2>Empowering Global Innovation</h2>
+                <p>By offering this tool entirely for free, Henry Global Tech is actively empowering the next generation of software engineers. Students, startups, and enterprise companies alike can pull real-time, accurate global data to populate dropdowns, calculate shipping logistics, or analyze demographics without any financial barrier. This is true digital freedom.</p>
+            </div>
+            <div class="image-gallery">
+                 <img src="hgtcountryapi.png" alt="Country API 1">
+                 <img src="hgtcountryapi2.png" alt="Country API 2">
+                 <img src="hgtcountryapi3.png" alt="Country API 3">
+                 <img src="hgtcountryapi4.png" alt="Country API 4">
+                 <img src="hgtcountryapi5.png" alt="Country API 5">
+            </div>
+        </div>
+
+        <!-- SECTION 3: HGT PRIVACY POLICY PRO -->
+        <div id="section-3" class="content-section hidden">
+            <div class="utility-bar">
+                <button onclick="window.open('https://henrykamsi.github.io/HGT-Privacy-Policy-Pro-/', '_blank')">Open Website</button>
+                <button onclick="copyLink('https://henrykamsi.github.io/HGT-Privacy-Policy-Pro-/')">Copy Link</button>
+                <div class="voice-btn-container">
+                    <button class="voice-btn" onmousedown="showTooltip(this)" onmouseup="speakText('text-privacy')" ontouchstart="showTooltip(this)" ontouchend="speakText('text-privacy')">🎙️ Listen to Page</button>
+                    <span class="tooltip">Click to listen</span>
+                </div>
+            </div>
+
+            <div id="text-privacy">
+                <h1>HGT Privacy Policy Pro: Compliance Simplified</h1>
+                <h2>The Ultimate AdSense Companion</h2>
+                <p>Anyone who has attempted to monetize a website through Google AdSense knows that compliance is the first major hurdle. Without a strict, legally sound Privacy Policy outlining cookie usage and data retention, your site will be rejected. HGT Privacy Policy Pro is the definitive solution to this problem. I designed this tool specifically to generate comprehensive, professional-grade privacy policies that meet the rigorous standards of global ad networks, GDPR, and CCPA regulations.</p>
+
+                <h2>Permanent Storage, Permanent Peace of Mind</h2>
+                <p>Unlike cheap online generators that produce a temporary text file, HGT Privacy Policy Pro utilizes permanent data storage technology. Once a user generates their policy, it is securely hosted and permanently accessible. If privacy laws change, or if the website owner adds new data collection methods (like Firebase Auth or OneSignal push notifications), they can easily return to the platform and update their document in real time.</p>
+
+                <h2>Seamless WordPress and Blogger Integration</h2>
+                <p>This tool is engineered to perfectly complement users who deploy their sites via Softaculous on WordPress or who manage Blogger ecosystems. It strips away the legal confusion, allowing developers to focus entirely on building their product while HGT handles the compliance infrastructure. It is the gold standard for legal web utilities.</p>
+            </div>
+            <div class="image-gallery">
+                 <img src="hgtprivacypolicypro1.png" alt="Privacy Pro 1">
+                 <img src="privacypolicypro2.png" alt="Privacy Pro 2">
+                 <img src="privacypolicypro3.png" alt="Privacy Pro 3">
+                 <img src="privacypolicypro4.png" alt="Privacy Pro 4">
+                 <img src="privacypolicypro5.png" alt="Privacy Pro 5">
+                 <img src="privacypolicypro6.png" alt="Privacy Pro 6">
+            </div>
+        </div>
+
+        <!-- NAVIGATION CONTROLS -->
+        <div class="nav-buttons">
+            <button onclick="navigate(-1)">Previous</button>
+            <button onclick="navigate(1)">Next</button>
+        </div>
+
+        <!-- Image Data Fetcher Display -->
+        <p class="image-info" id="image-counter-display"></p>
+
+    </div>
+
+    <!-- === JAVASCRIPT LOGIC === -->
+    <script>
+        // State variables
+        let currentSectionIndex = 0;
+        const totalSections = 4;
+
+        // 1. Initial 15-second loading sequence
+        function startAppSequence() {
+            document.getElementById('btn-get-started').classList.add('hidden');
+            document.getElementById('initial-loading-ui').classList.remove('hidden');
+            
+            const statusText = document.getElementById('initial-status');
+            const messages = [
+                "Listing details...", 
+                "Preparing Henry's Architecture...", 
+                "Analyzing Admin Data...", 
+                "Fetching HGT Records...",
+                "Finalizing Nexus..."
+            ];
+            
+            let msgIndex = 0;
+            const textInterval = setInterval(() => {
+                msgIndex++;
+                if(msgIndex < messages.length) {
+                    statusText.innerText = messages[msgIndex];
+                }
+            }, 3000);
+
+            setTimeout(() => {
+                clearInterval(textInterval);
+                document.getElementById('screen-welcome').classList.add('hidden');
+                document.getElementById('screen-main').classList.remove('hidden');
+                updateDisplay();
+            }, 15000);
+        }
+
+        // 2. Navigation & 5-Second Transition Logic
+        function navigate(direction) {
+            if (currentSectionIndex + direction < 0 || currentSectionIndex + direction >= totalSections) {
+                return; 
+            }
+
+            window.speechSynthesis.cancel();
+
+            if (direction === 1) {
+                document.getElementById('screen-main').classList.add('hidden');
+                document.getElementById('screen-transition').classList.remove('hidden');
+                
+                setTimeout(() => {
+                    document.getElementById('screen-transition').classList.add('hidden');
+                    document.getElementById('screen-main').classList.remove('hidden');
+                    currentSectionIndex += direction;
+                    updateDisplay();
+                }, 5000);
+            } else {
+                currentSectionIndex += direction;
+                updateDisplay();
+            }
+        }
+
+        // 3. Update UI and Fetch Image Lengths
+        function updateDisplay() {
+            for (let i = 0; i < totalSections; i++) {
+                document.getElementById(`section-${i}`).classList.add('hidden');
+            }
+            const activeSection = document.getElementById(`section-${currentSectionIndex}`);
+            activeSection.classList.remove('hidden');
+
+            const imagesInSection = activeSection.getElementsByTagName('img');
+            const counterDisplay = document.getElementById('image-counter-display');
+            
+            if(imagesInSection.length > 0) {
+                counterDisplay.innerText = `System Data: Successfully fetched ${imagesInSection.length} image assets for this section.`;
+            } else {
+                counterDisplay.innerText = `System Data: No image assets bound to this section.`;
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        // 4. Utility Functions: Copy to Clipboard
+        function copyLink(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert("HGT Link copied securely to clipboard!");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // 5. Voice-to-Speech Logic (Long Press "Click to Listen")
+        function showTooltip(buttonElement) {
+            buttonElement.nextElementSibling.classList.add('show-tooltip');
+        }
+
+        function speakText(textContainerId) {
+            const tooltips = document.querySelectorAll('.tooltip');
+            tooltips.forEach(t => t.classList.remove('show-tooltip'));
+
+            window.speechSynthesis.cancel();
+
+            const textToRead = document.getElementById(textContainerId).innerText;
+            const utterance = new SpeechSynthesisUtterance(textToRead);
+            
+            utterance.rate = 0.95;
+            utterance.pitch = 1;
+            
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
